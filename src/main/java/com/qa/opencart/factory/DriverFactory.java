@@ -30,7 +30,7 @@ public class DriverFactory {
 
 		String browserName = prop.getProperty("browser").toLowerCase().trim();
 
-		System.out.println("browser name is: " + browserName);
+		System.out.println("browser name is : " + browserName);
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// driver=new ChromeDriver(optionsManager.getChromeOptions());
@@ -46,7 +46,7 @@ public class DriverFactory {
 		} else if (browserName.trim().equalsIgnoreCase("safari")) {
 			driver = new SafariDriver();
 		} else {
-			System.out.println("please pass the right browser :" + browserName);
+			System.out.println("please pass the right browser name :" + browserName);
 		}
 
 		getDriver().manage().deleteAllCookies();
