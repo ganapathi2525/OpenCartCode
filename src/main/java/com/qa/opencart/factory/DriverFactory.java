@@ -61,44 +61,43 @@ public class DriverFactory {
 	}
 
 	public Properties initProp() {
-
+		// mvn clean install -Denv="qa"
+		// mvn clean install
 		prop = new Properties();
 		FileInputStream ip = null;
-
-		// mvn clean install -Denv="stage"
-		// mvn clean install
-
 		String envName = System.getProperty("env");
-		System.out.println("Running test cases on : " + envName);
+		System.out.println("Running test cases on Env: " + envName);
 
 		try {
-		if (envName == null) {
-			System.out.println("no env is passed....Running tests on QA env...");
+			if (envName == null) {
+				System.out.println("no env is passed....Running tests on QA env...");
+				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+			} else {
+				switch (envName.toLowerCase().trim()) {
+				case "qa":
+					ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+					break;
+				case "stage":
+					ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
+					break;
+				case "dev":
+					ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
+					break;
+				case "prod":
+					ip = new FileInputStream("./src/test/resources/config/config.properties");
+					break;
 
-			ip = new FileInputStream("./src/test/resources/config/config.properties");
+				default:
+					System.out.println("....Wrong env is passed....No need to run the test cases....");
+					throw new FrameworkException("WRONG ENV IS PASSED...");
+				// break;
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+
 		}
 
-		switch (envName.toLowerCase().trim()) {
-		case "qa":
-			 ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
-			break;
-			
-		case "dev":
-			 ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
-			break;
-			
-		case "stage":
-			ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
-			break;
-
-		default:
-			System.out.println("....Wrong env is passed....No need to run the test cases....");
-			throw new FrameworkException("WRONG ENV NAME IS PASSED");
-		//	break;
-		}
-		}catch(FileNotFoundException e) {
-			
-		}
 		try {
 			prop.load(ip);
 		} catch (IOException e) {
@@ -106,6 +105,7 @@ public class DriverFactory {
 		}
 
 		return prop;
+
 	}
 
 	public static String getScreenshot() {
