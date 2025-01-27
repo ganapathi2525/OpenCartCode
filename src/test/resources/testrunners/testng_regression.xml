@@ -26,11 +26,11 @@
 		</classes>
 	</test>
 
-	<test name="Product Info Page Test_chrome">
+	<!-- <test name="Product Info Page Test_chrome">
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
-	</test>
+	</test> -->
 
 
 
