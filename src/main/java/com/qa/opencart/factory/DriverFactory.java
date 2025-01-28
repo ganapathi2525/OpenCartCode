@@ -153,19 +153,19 @@ public class DriverFactory {
 //
 //	}
 //
-//	public static String getScreenshot() {
-//		File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
-//		String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
-//		File destination = new File(path);
-//
-//		try {
-//			FileUtil.copyFile(scrFile, destination);
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return path;
-//
-//	}
+	public static String getScreenshot() {
+		File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+		String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
+		File destination = new File(path);
+
+		try {
+			FileUtil.copyFile(scrFile, destination);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return path;
+
+	}
 
 }
